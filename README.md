@@ -26,10 +26,12 @@ mkfile -v 500M 500M.bin
 ```
 
 ## NOTE
-* dav.confの`server_name`を設定しないと`curl`が無視されることに注意
+* dav.confの`server_name`を設定しなかったり、条件にマッチしないときはより優先であると判断された順番のルールが自動的に適用されることに注意
+  * すべての`server_name`にマッチしなかったときに、設定の記述の順番に関係なく、`200 OK`が`404 Not Found`よりも優先されたような挙動となった(要確認)
 
 ### how to debug
 ``` bash
 # how to update dav.conf file
 docker cp ./etc/nginx/conf.d/dav.conf nginx-webdav:/etc/nginx/conf.d/dav.conf
+docker cp ./etc/nginx/nginx.conf nginx-webdav:/etc/nginx/
 ```

@@ -27,3 +27,9 @@ mkfile -v 500M 500M.bin
 
 ## NOTE
 * dav.confの`server_name`を設定しないと`curl`が無視されることに注意
+
+### how to debug
+``` bash
+# how to update dav.conf file
+docker cp ./etc/nginx/conf.d/dav.conf nginx-webdav:/etc/nginx/conf.d/dav.conf
+```

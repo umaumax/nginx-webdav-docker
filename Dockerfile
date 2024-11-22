@@ -20,6 +20,7 @@ ADD entrypoint.sh /
 RUN chmod +x entrypoint.sh
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
+RUN unlink /etc/nginx/sites-enabled/default
 
 EXPOSE 80 443
 CMD /entrypoint.sh && nginx -g "daemon off;"

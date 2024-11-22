@@ -1,18 +1,32 @@
 # nginx-webdav-docker
 
+## how to run
+by docker
 ``` bash
 docker build -t nginx-webdav .
 docker run --name nginx-webdav -p 30080:80 -it nginx-webdav
 
-docker exec -it nginx-webdav bash
-docker rm nginx-webdav
+# docker exec -it nginx-webdav bash
+# docker rm nginx-webdav
+```
 
+by docker compose
+``` bash
+docker compose up -d
+# docker compose exec nginx-webdav bash
+# docker compose logs -f
+# docker compose down
+```
+
+check
+``` bash
 curl http://localhost:30080/
 
 curl -X PUT -T README.md http://localhost:30080/upload/
 # see /var/www/dav/upload/README.md
 ```
 
+measure
 ``` bash
 # mac
 mkfile -v 100M 100M.bin

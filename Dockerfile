@@ -15,12 +15,12 @@ RUN chown www-data:www-data /var/www/dav
 RUN chmod -R 755 /var/www/dav
 ADD ./etc/nginx/conf.d/ /etc/nginx/conf.d/
 ADD ./etc/nginx/nginx.conf /etc/nginx/
+RUN unlink /etc/nginx/sites-enabled/default
 RUN nginx -t
 ADD entrypoint.sh /
 RUN chmod +x entrypoint.sh
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
-RUN unlink /etc/nginx/sites-enabled/default
 
 EXPOSE 80 443
 CMD /entrypoint.sh && nginx -g "daemon off;"
